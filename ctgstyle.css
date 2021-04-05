@@ -1,0 +1,108 @@
+/* This is an external style sheet file */
+h1{ color:White;
+	word-spacing:10px;
+	letter-spacing:.1em;
+	text-align:center;
+	background:blue;
+	text-transform:uppercase;
+	font-family:Arial;
+}
+
+h2{ color:sienna;
+	/*word-spacing:10px;
+	letter-spacing:.4em;
+	text-align:center;
+	margin-left:50px;
+	margin-right: :400px;*/
+	text-shadow: 5px 3px  5px black ;
+	background:blue;
+	font:16px;
+	font-style: italic;
+	text-indent: 20px;
+	text-decoration:blink;
+}
+
+h3{ color:blue;
+	text-align:center;
+	text-shadow: 5px 3px  5px black ;
+	font-size: 35px;
+	font-family:Tohma;
+}
+
+h4{ color:blue;
+	text-align:left;
+	text-indent:200px;
+	font-size: 20px;
+	font-family:Tohma;
+}
+p{
+	color:blue;
+	font-size: 20px;
+	text-transform:capitalize;
+	text-align: left;
+	
+}
+
+div{
+	
+	padding-left:150px;
+	height:10px; 
+	width:1300px; 
+}
+
+ul {list-style:circle url("image/tick.png");}
+ol {list-style-type:upper-roman;}
+
+/*
+body {
+	background-position: left top
+	background-image:url('image/GSM.jpg');
+	background-repeat:repeat;
+	background-attachment:fixed;
+
+}
+*/
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: Solid;
+  /*width: 70%;*/
+  width:1000px;
+  margin-left:250px; 
+  margin-right:auto; 
+  margin-top:30px
+  
+  background-color: #f1f1c1;
+}
+
+ th,td {
+  border: 3px solid black;
+  padding: 15px;
+  text-align: center;
+ /* background-color: black;*/
+  color: blue;
+}
+
+
+
+tr:nth-child(odd) 
+{
+  background-color: yellow;
+}
+
+
+img{
+	float:right;
+}
+
+input:focus
+{
+background-color:yellow;
+}
+
+
+a:link {color:#0000FF;}    /* unvisited link */
+a:visited {color:#FF0000;} /* visited link */
+a:hover {color:#00FF00;}   /* mouse over link */
+a:active {color:#000000;}  /* selected link */
+/* end of style rules. */
