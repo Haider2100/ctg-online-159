@@ -1,0 +1,370 @@
+
+Task 3 : Make a Class SuperPower. There will be many kind of super power methods in the class. Like Flying , LaserEye , etc. Now Make the classes like IronMan, CaptainAmerica, Thor . Inherit the SuperPower Class by the following classes. Now print the proper power method from the Superhero class.
+
+////----------------------Solutions of Task 3------------------------------------------------------
+<?php  
+
+include 'SuperHero.php';
+$Hero = new SuperHero();
+
+?>
+
+	<!--Start -- Set Combo Box Info-->
+
+<div>
+<form method="post">
+  <label for="Heros">Choose a Super Hero:</label>
+  <select name="Heros" id="Heros">
+  <option value="none" selected disabled hidden>Select an Option</option>
+    <optgroup label="Male Supper Hero">
+      <option value="Iron Man">Iron Man</option>
+      <option value="Captain America">Captain America</option>
+      <option value="Spiderman">Spiderman</option>
+      <option value="Thor">Thor</option>
+      <option value="Krish">Krish</option>
+    </optgroup>
+    <optgroup label="Female Super Heroine">
+      <option value="Wonder Woman">Wonder Woman</option>
+      <option value="Captain Marvel">Captain Marvel</option>
+      <option value="Cat Woman">Cat Woman</option> 
+    </optgroup>
+  </select>
+  <input type="submit" name="selecthero" value="Show">
+</form>
+
+
+</div>
+<!--End-- Set Combo Box Info-->
+
+<br>
+
+<!--Start -- Set Table Info-->
+<table>
+<caption><h2>
+<?php 
+echo " Super Hero ";
+if(isset($_POST['selecthero'])){
+
+$Hero->set_name($_POST['Heros']);	
+echo $Hero->Name;	
+}
+
+?> 
+
+<h2></caption>
+<tr>
+<th style="text-align: center;height: 40px;width:300px;">Picture</th>
+<th style="text-align: center;">Personal Iformation</th> 
+</tr>
+
+<tr>
+<td rowspan=3>
+<?php 
+if(isset($_POST['selecthero'])){
+
+Switch ($_POST['Heros']){
+	Case 'Iron Man':
+		$url = 'images/ironman.png';
+		break;
+	Case 'Captain America':
+		$url = 'images/CaptiainAmerica.jpg';
+		break;
+	Case 'Thor':
+		$url = 'images/Thor.jpg';
+		break;
+	Case 'Wonder Woman':
+		$url = 'images/wonderwoman.jpg';
+		break;
+	Case 'Spiderman':
+		$url = 'images/Spiderman.png';
+		break;
+	Case 'Krish':
+		$url = 'images/Krish.jpg';
+		break;	
+	Case 'Cat Woman':
+		$url = 'images/catwoman.png';
+		break;
+	Case 'Captain Marvel':
+		$url = 'images/CaptainMarvel.jpg';
+		break;
+}
+
+//$image = base64_encode(file_get_contents($url));
+}
+else
+{
+$url = 'images/AllHero.jpg';
+}
+$image = base64_encode(file_get_contents($url));
+?>	
+<img src="data:image/x-icon;base64,<?= $image ?>" width=300 height=400>
+
+</td>
+
+<td>
+<?php 
+if(isset($_POST['selecthero'])){
+
+            $Hero->ShowInfo($_POST['Heros']);	// Calling Superhero class for peronal information from calling listofsuperhero class
+
+}
+?>		
+</td>
+</tr>
+
+<tr>
+<td style="text-align: center;height: 40px ;font-weight:bold;">Super Power Information</td>
+</tr>
+
+<tr>
+<td>
+<?php 
+if(isset($_POST['selecthero'])){
+	SuperPower();			// Calling Superhero class inherrit SuperPower class for super power information
+}
+?>	
+</td>
+</tr>
+
+<tr>
+<td colSpan=2></td>
+</tr>
+
+</table>
+
+
+<?php
+					// Function to calling inherrit SuperPower class from super hero class
+function SuperPower(){
+	$Hero = new SuperHero();
+	echo "01. ".$Hero->costume()."<br><br>";
+	echo "02. ".$Hero->Flying()."<br><br>";
+	echo "03. ".$Hero->fightingskills($_POST['Heros'])."<br><br>";
+	echo "04. ".$Hero->senseofhumour($_POST['Heros'])."<br><br>";
+	echo "05. ".$Hero->honesty($_POST['Heros'])."<br><br>";
+	echo "06. ".$Hero->mission()."<br><br>";	
+}
+
+
+
+?>   
+
+////----------------------End------------------------------------------------------
+
+
+===============================================================================
+SuperHero Class File Code
+===============================================================================
+<?php
+include "SuperPower.php";
+
+
+class SuperHero extends SuperPower{
+  // ------------------------Properties
+ 
+  public $Name;
+  
+
+  // ------------------------Methods get
+  function ShowInfo($na) {
+ 	include_once "ListofHero.php";
+   	$suphero=new ListofHero();    
+	
+Switch ($na){
+	Case 'Iron Man':
+		$suphero->IronMan();
+		break;
+	Case 'Captain America':
+		$suphero->CaptainAmerica();
+		break;
+
+	Case 'Thor':
+		$suphero->Thor();
+		break;
+
+	Case 'Wonder Woman':
+		$suphero->WonderWoman();
+		break;
+	Case 'Spiderman':
+		$suphero->SpiderMan();
+		break;
+
+	Case 'Krish':
+		$suphero->Krish();
+		break;
+	
+	Case 'Cat Woman':
+		$suphero->CatWoman();
+		break;
+
+	Case 'Captain Marvel':
+		$suphero->CaptainMarvel();
+		break;
+}
+	
+	 
+}
+ 
+function set_name($na) {
+$this->Name =$na ;
+}
+
+function get_name() {
+return $this->Name ;
+}
+
+function __destruct() {
+    $suphero=null; 
+  }
+
+}
+
+?>
+
+===============================================================================
+SuperPower Class File Code
+===============================================================================
+<?php
+
+class SuperPower {
+  // ------------------------Properties
+ Public $name;
+
+// --------------------------Methods  general
+
+  function costume() {
+      return  "Have a Special Costume.";
+  }
+
+  function Flying() {
+  
+    	return  "Can flying in air with high speed.";
+  }
+ 
+ function fightingskills($hname) {
+      if ($hname=="Cat Woman"){
+        return "Not a Great Fighter";
+      }
+      else{
+       return "Skilled Fighter";  
+      }  
+
+  }
+
+  function senseofhumour($hname) {
+      if ($hname=="Cat Woman"){
+        return  "......";
+      }
+      else{
+       return  "A great Sense of Humour.";
+      }  
+      
+      
+  }
+
+function honesty($hname) {
+    if ($hname=="Cat Woman"){
+        return  "Cat woman is the Batman's antagonist/enemy .";
+      }
+      else{
+       return  "Have great Honesty.";
+      } 
+      
+  }
+
+  function mission() {
+  
+      return  "There always have a mission. Because 'With Great Power comes Great Responsibility' .";
+  }
+
+}
+
+?>
+
+===============================================================================
+ListofHero Class File Code
+===============================================================================
+<?php
+
+class ListofHero {
+  // ------------------------Properties
+  public $Name;
+  public $Info;
+
+// --------------------------Methods  general
+
+  function IronMan() {
+    echo "A. Heroic Name  :Iron Man <br><br>";
+    echo "B. Original Name : Anthony Edward 'Tony' Stark <br><br>";
+    echo "C. Gender : Male<br><br>";
+    echo "D. Place of origin :	Long Island, New York<br><br>";
+    echo "E. Abilities : Proficient scientist and engineer <br><br><br>";
+  }
+
+
+  function CaptainAmerica() {
+    echo "A. Heroic Name  :Captain America <br><br>";
+    echo "B. Original Name :  Steve Rogers <br><br>";
+    echo "C. Gender : Male<br><br>";
+    echo "D. Place of origin :	Manhattan, New York City<br><br>";
+    echo "E. Abilities : Master hand-to-hand fighter,Skilled military leader & strategist,Equipped with virtually indestructible Vibranium shield. <br><br><br>";
+    
+  }
+
+function Thor() {
+    echo "A. Heroic Name  :Thor <br><br>";
+    echo "B. Original Name : Thor Odinson  <br><br>";
+    echo "C. Gender : Male<br><br>";
+    echo "D. Place of origin :	Asgard<br><br>";
+    echo "E. Abilities : Inter-dimensional teleportation,Electric manipulation,Flight,Weather manipulation <br><br><br>";
+    
+  }
+  
+  function WonderWoman() {
+    echo "A. Heroic Name  :Wonder Woman <br><br>";
+    echo "B. Original Name : Princess Diana of Themyscira <br><br>";
+    echo "C. Gender : Female<br><br>";
+    echo "D. Place of origin :	Themyscira<br><br>";
+    echo "E. Abilities : Hand-to-hand combat and martial arts Uses Lasso of Truth, indestructible bracelets, projectile tiara, sword, shield, and invisible jet <br><br><br>";
+    
+  }
+
+function SpiderMan() {
+    echo "A. Heroic Name  :Spider Man <br><br>";
+    echo "B. Original Name : Peter Parker <br><br>";
+    echo "C. Gender : Male<br><br>";
+    echo "D. Place of origin :	Queens, New York City<br><br>";
+    echo "E. Abilities : Ability to cling to solid surfaces <br><br><br>";
+    
+  }
+
+function Krish() {
+    echo "A. Heroic Name  :Krish<br><br>";
+    echo "B. Original Name : Krishna <br><br>";
+    echo "C. Gender : Male<br><br>";
+    echo "D. Place of origin :India<br><br>";
+    echo "E. Abilities :Master hand-to-hand fighter, Great Energy <br><br>";
+    
+  }
+
+function CatWoman() {
+    echo "A. Heroic Name  : CatWoman <br> <br>";
+    echo "B. Original Name : Selina Kyle <br> <br>";
+    echo "C. Gender : Female<br> <br>";
+    echo "D. Place of origin : American<br> <br>";
+    echo "E. Abilities : As an adversary of Batman, she was a whip-carrying burglar with a taste for high stake thefts. <br><br><br>";
+    
+  }
+
+function CaptainMarvel() {
+    echo "A. Heroic Name  :Captain Marvel <br><br>";
+    echo "B. Original Name : Carol Danvers <br><br>";
+    echo "C. Gender : Female<br><br>";
+    echo "D. Place of origin : Boston, Massachusetts<br><br>";
+    echo "E. Abilities : Flight, Energy Blasts <br><br><br>";
+    
+  }
+
+}
+
+?>

@@ -1,0 +1,90 @@
+
+Task 4 : Make a Car class. Take EngineStatus,BodyPart property for Car class. Take another class named Audi. Take property color, Seats . then Print all of them EngineStatus,BodyPart,property color by inherit Car Class. You can use Getter Setter if you want.
+
+////----------------------Solutions of Task 4------------------------------------------------------
+<?php  
+
+include 'Audi.php';
+
+$CarInfo = new Audi();
+
+//-----------call system------------------
+echo "<div>";
+echo "Color : ". $CarInfo->color."<br>";
+echo "Seat : ".$CarInfo->seat."<br>";
+echo "Engine Status : ".$CarInfo->EngineStatus."<br>";
+echo "BodyPart : ".$CarInfo->BodyPart."<br>";
+
+echo "<br>";
+echo "<br>";
+echo "--------------------Setter Getter system---------------</div><br>";
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+//----------set get system----------
+$CarInfo->set_info("Black","Forward-facing with harness","Good Condition","WindSheild, 4 Door with Child Lock");
+echo $CarInfo->get_info();
+
+?>      
+
+////----------------------End------------------------------------------------------
+
+
+===============================================================================
+Audi Class File Code
+===============================================================================
+
+<?php
+include "Car.php";
+
+class Audi extends Car {
+  // ------------------------Properties
+  public $color="Purple Green";
+  public $seat="Convertible seats (used rear facing)";
+
+ function set_info($cr,$st,$en,$bp) {
+    
+ 	  $this->color = $cr;
+    $this->seat = $st;
+    $this->EngineStatus = $en;
+    $this->BodyPart = $bp;
+
+  }
+ 
+// ------------------------Methods get
+ 
+ function get_info() {
+ 	  $allinfo="<div>Color : " .$this->color  
+  	 . "<br>Seat : " .$this->seat 
+  	 . "<br>Engine Status : ".$this->EngineStatus 
+  	 . "<br>BodyPart : " . $this->BodyPart."</div>";
+    
+    return $allinfo;
+  }
+
+}
+
+?>
+
+
+===============================================================================
+Car Class File Code
+===============================================================================
+
+
+
+<?php
+
+class Car {
+  
+  // ------------------------Properties
+  	public $EngineStatus="Condition Good";
+	public $BodyPart="Mirror,Wheel, Bumper ";
+
+}
+
+?>

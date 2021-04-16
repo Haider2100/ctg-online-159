@@ -1,0 +1,56 @@
+
+Task 1 : Make a Class Named 'MyName', print out your name by calling method and pass by method parameters.
+
+////----------------------Solutions of Task 1------------------------------------------------------
+<?php  
+
+include_once 'MyName.php';
+
+$name = new MyName("Haider");
+
+echo "<div>My Nick Name : " . $name->Nic_name()."</div><br>";
+
+echo "<div>My Full Name : " . $name->full_name('A H M','Kamruzzaman')."</div><br>";
+
+?>      
+
+////----------------------End------------------------------------------------------
+
+
+===============================================================================
+MyName Class File Code
+===============================================================================
+
+<?php
+
+class MyName {
+  // ------------------------Properties
+  public $name;
+
+// --------------------------Methods  general
+
+function __construct($na) {
+    $this->name = $na;
+  }
+
+  function Nic_name() {
+   	 return $this->name;
+  }
+
+  function full_name($fn,$ln) {
+    	$this->name = $fn ." " .$ln; 	
+	return $this->name;	
+  }
+ 
+ 
+  function set_name($fname,$lname) {  
+ 	  $this->name = $fname ." " .$lname;
+  }
+
+  function get_name() {
+   	 return $this->name;
+  }
+
+}
+
+?>

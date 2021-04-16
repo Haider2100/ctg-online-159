@@ -1,0 +1,93 @@
+
+Task 7 : Make a class named 'Assignment'. Now take a variable and set 'ADVANCED WEB APPLICATION DEVELOPMENT' as the value by constructor. Now make 3 methods where you can do, 1. count number of word of the sentence and return the result, 2. Find the lowest number of word from the sentence and print it, 3. Find the 'Application' word from the sentence and replace the word with 'WEBSITE' and print the full Sentence again with the replaced word.
+
+////----------------------Solutions of Task 7------------------------------------------------------
+<?php  
+include 'Assignment.php';
+$CapVal=new Assignment();
+
+echo $CapVal->Caption."<br>";
+
+echo "01. Total Word Count :".$CapVal->CountWordNumber()."<br>";
+echo "02. Total Charecter Count :".$CapVal->CountCharNumber()."<br>";
+echo "03. Total Small Word  :".$CapVal->Lowestword()."<br>";
+echo "04. Total Longest Word :".$CapVal->Highestword()."<br>";
+echo "05. Replace Word : ".$CapVal->Replaceword()."<br>";
+
+
+?>      
+
+////----------------------End------------------------------------------------------
+
+
+===============================================================================
+Assignment Class File Code
+===============================================================================
+
+<?php
+
+class Assignment {
+  // ------------------------Properties
+  public $Caption;
+  public $words=array();
+
+// --------------------------Methods  general
+
+function __construct() {
+    $this->Caption = "ADVANCED WEB APPLICATION DEVELOPMENT";
+    $this->words = explode(' ', $this->Caption);
+  }
+
+
+  function CountWordNumber() {
+    
+    return str_word_count($this->Caption);
+  }
+
+  function CountCharNumber() {
+    
+    return strlen(str_replace(" ","",$this->Caption));
+  }
+
+
+  function Lowestword() {
+    $f_num=strlen($this->words[0]);  
+    $Shortword=$this->words[0];
+    
+    foreach ($this->words as $fword){
+      if ($f_num>strlen($fword)){
+          $f_num=strlen($fword);
+          $ShortLen=$fword;
+      }
+
+    }
+   	
+		return $ShortLen;	
+  }
+ 
+  
+  function Highestword() {
+   $f_num=strlen($this->words[0]);  
+    $Bigword=$this->words[0];
+    
+    foreach ($this->words as $fword){
+      if ($f_num<strlen($fword)){
+          $f_num=strlen($fword);
+          $Bigword=$fword;
+      }
+
+    }
+    
+    return $Bigword; 
+  }
+  
+ 
+  function Replaceword() {
+    return str_replace("APPLICATION", "SITE", $this->Caption);
+  }
+
+}
+
+
+
+?>
