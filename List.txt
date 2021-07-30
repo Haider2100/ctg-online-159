@@ -1,0 +1,3 @@
+I would like a program or an app to periodically (multiple times per day) check specific item availability on eBay and then get a report sent to an email address. It does not matter how it works but I need something quick and easy to operate. I would probably have up to a few hundred items to check every time.
+
+The service I am looking for is to create a website with the augmented virtual reality technology and other areas needed for the site.
